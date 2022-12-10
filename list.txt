@@ -1,0 +1,6 @@
+rating
+basket
+errors
+
+
+check AdminPanel
