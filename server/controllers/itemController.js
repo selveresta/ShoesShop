@@ -27,7 +27,7 @@ class ItemController {
 				});
 			}
 
-			return res.json(info);
+			return res.json(item);
 		} catch (e) {
 			next(ApiError.badRequest(e.message));
 		}
