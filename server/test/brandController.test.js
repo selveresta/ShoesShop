@@ -1,5 +1,9 @@
 const brandController = require("../controllers/brandController");
 
-test("getAllBrands", () => {
-	expect(brandController.getAll(null, null)).toBeDefined();
+test("getAllBrands", async () => {
+	let brands;
+	await fetch("http://localhost:5000/api/brand").then((data) => {
+		brands = data;
+	});
+	expect(brands).toBeDefined();
 });
