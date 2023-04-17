@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form, Row, Col } from "react-bootstrap";
 import { Context } from "../../index";
-import { createDevice, fetchBrands, fetchTypes } from "../../http/deviceAPI";
+import { createDevice, deleteDevice, fetchBrands, fetchTypes } from "../../http/deviceAPI";
 import { observer } from "mobx-react-lite";
 
-const CreateDevice = observer(({ show, onHide }) => {
+const CreateDevice = observer(({ show, onHide, type }) => {
 	const { item } = useContext(Context);
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState(0);
@@ -45,6 +45,38 @@ const CreateDevice = observer(({ show, onHide }) => {
 		createDevice(formData).then((data) => onHide());
 	};
 
+	const deleteItem = () => {
+		deleteDevice(value).then((data) => {
+			setValue("");
+			onHide();
+		});
+	};
+
+	const [value, setValue] = useState("");
+
+	if (type === "delete") {
+		return (
+			<Modal show={show} onHide={onHide} centered>
+				<Modal.Header closeButton>
+					<Modal.Title id='contained-modal-title-vcenter'>Delete Item</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<Form>
+						<Form.Control value={value} onChange={(e) => setValue(e.target.value)} placeholder={"item name "} />
+					</Form>
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant='outline-danger' onClick={onHide}>
+						Close
+					</Button>
+					<Button variant='outline-success' onClick={deleteItem}>
+						Delete
+					</Button>
+				</Modal.Footer>
+			</Modal>
+		);
+	}
+
 	return (
 		<Modal show={show} onHide={onHide} centered>
 			<Modal.Header closeButton>
@@ -72,12 +104,7 @@ const CreateDevice = observer(({ show, onHide }) => {
 							))}
 						</Dropdown.Menu>
 					</Dropdown>
-					<Form.Control
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						className='mt-3'
-						placeholder='Enater Name'
-					/>
+					<Form.Control value={name} onChange={(e) => setName(e.target.value)} className='mt-3' placeholder='Enater Name' />
 					<Form.Control
 						value={price}
 						onChange={(e) => setPrice(Number(e.target.value))}

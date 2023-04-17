@@ -10,7 +10,7 @@ class TypeController {
 	}
 
 	async delete(req, res) {
-		const { name } = req.body;
+		const { name } = req.query;
 		const type = await Type.destroy({ where: { name: name } });
 		return res.json(type);
 	}

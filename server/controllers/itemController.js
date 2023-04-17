@@ -35,8 +35,7 @@ class ItemController {
 
 	async delete(req, res, next) {
 		try {
-			let { name } = req.body;
-
+			let { name } = req.query;
 			const item = await Item.destroy({ where: { name: name } });
 
 			return res.json(item);

@@ -22,7 +22,6 @@ class RatingController {
 
 	async getOne(req, res, next) {
 		const { id } = req.params;
-		console.log(id);
 		const rate = await Rating.findAll({
 			where: { itemId: id },
 		});

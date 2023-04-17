@@ -4,7 +4,7 @@ const brandController = require("../controllers/brandController");
 const checkRole = require("../middleware/checkRoleMiddleWare");
 
 router.post("/", checkRole("ADMIN"), brandController.create);
-router.post("/delete", checkRole("ADMIN"), brandController.delete);
+router.delete("/", checkRole("ADMIN"), brandController.delete);
 router.get("/", brandController.getAll);
 router.get("/:id", brandController.getOne);
 

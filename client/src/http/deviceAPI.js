@@ -5,6 +5,11 @@ export const createType = async (type) => {
 	return data;
 };
 
+export const deleteType = async (type) => {
+	const { data } = await $authHost.delete("api/type", { params: { name: type } });
+	return data;
+};
+
 export const fetchTypes = async () => {
 	const { data } = await $host.get("api/type");
 	return data;
@@ -12,6 +17,11 @@ export const fetchTypes = async () => {
 
 export const createBrand = async (brand) => {
 	const { data } = await $authHost.post("api/brand", brand);
+	return data;
+};
+
+export const deleteBrand = async (brand) => {
+	const { data } = await $authHost.delete("api/brand", { params: { name: brand } });
 	return data;
 };
 
@@ -32,6 +42,11 @@ export const fetchType = async (id) => {
 
 export const createDevice = async (device) => {
 	const { data } = await $authHost.post("api/item/", device);
+	return data;
+};
+
+export const deleteDevice = async (device) => {
+	const { data } = await $authHost.delete("api/item/", { params: { name: device } });
 	return data;
 };
 
