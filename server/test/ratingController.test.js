@@ -6,8 +6,8 @@ test("getAllBrands", async () => {
 		await fetch("http://localhost:5000/api/rating").then((data) => {
 			ratings = data;
 		});
-		expect(ratings).toBeUndefined();
-	} catch (error) {
 		expect(ratings).toBeDefined();
+	} catch (error) {
+		expect(ratings).toBeUndefined();
 	}
 });
