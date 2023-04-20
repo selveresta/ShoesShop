@@ -8,6 +8,6 @@ test("getAllTypes", async () => {
 		});
 		expect(types).toBeDefined();
 	} catch (error) {
-		expect(types).toBeUndefined();
+		expect(types).toBeDefined();
 	}
 });

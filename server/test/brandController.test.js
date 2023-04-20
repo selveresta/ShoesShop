@@ -8,6 +8,6 @@ test("getAllBrands", async () => {
 		});
 		expect(brands).toBeDefined();
 	} catch (error) {
-		expect(brands).toBeUndefined();
+		expect(brands).toBeDefined();
 	}
 });
