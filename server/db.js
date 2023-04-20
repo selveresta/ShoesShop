@@ -9,16 +9,15 @@ const pgclient = new Client({
 	password: "098890",
 	database: "postgres",
 });
-
-const start = async () => {
-	await pgclient.connect();
-};
-start();
 try {
-	pgclient.query("CREATE DATABASE Online_store", (err, res) => {
-		console.log(err, res);
-		pgclient.end();
-	});
+	const start = async () => {
+		await pgclient.connect();
+		pgclient.query("CREATE DATABASE Online_store", (err, res) => {
+			console.log(err, res);
+			pgclient.end();
+		});
+	};
+	start();
 } catch (error) {
 	pgclient.end();
 }
