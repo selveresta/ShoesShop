@@ -38,13 +38,8 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Connect to PostgreSQL
-              # Runs a script that creates a PostgreSQL table, populates
-              # the table with data, and then retrieves the data
+            - name: start
               run: node index.js
-              -run: npm test
-              # Environment variables used by the `client.js` script to create
-              # a new PostgreSQL table.
               env:
                   # The hostname used to communicate with the PostgreSQL service container
                   DB_HOST: localhost
@@ -54,3 +49,10 @@ jobs:
                   DB_NAME: Online_store
                   DB_USER: postgres
                   SECRET_KEY: MYSECRETKEY
+
+            - name: test
+              # Runs a script that creates a PostgreSQL table, populates
+              # the table with data, and then retrieves the data
+              run: npm test
+              # Environment variables used by the `client.js` script to create
+              # a new PostgreSQL table.
