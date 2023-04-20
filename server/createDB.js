@@ -1,3 +1,5 @@
+const { Sequelize } = require("sequelize");
+
 const sequelize = new Sequelize("postgres://postgres:098890@localhost:5432/postgres");
 
 const create = async () => {
