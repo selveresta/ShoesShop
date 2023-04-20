@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { exec } = require("child_process");
 
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -24,6 +25,17 @@ const start = async () => {
 		await sequelize.authenticate();
 		await sequelize.sync();
 		app.listen(PORT, () => console.log(`Server start on port ${PORT}`));
+		exec("npm test", (error, stdout, stderr) => {
+			if (error) {
+				console.log(`error: ${error.message}`);
+				return;
+			}
+			if (stderr) {
+				console.log(`stderr: ${stderr}`);
+				return;
+			}
+			console.log(`stdout: ${stdout}`);
+		});
 	} catch (error) {
 		console.log(error);
 	}
