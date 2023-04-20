@@ -29,7 +29,7 @@ const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("postgres://postgres:098890@localhost:5432/postgres");
 
 const create = async () => {
-	const createQuery = "CREATE DATABASE Online_store";
+	const createQuery = "CREATE DATABASE online_store";
 	await sequelize
 		.query(createQuery)
 		.then(() => console.log("DB created"))
