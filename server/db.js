@@ -14,13 +14,17 @@ try {
 		await pgclient.connect();
 		pgclient.query("CREATE DATABASE Online_store", (err, res) => {
 			console.log(err, res);
-			pgclient.end();
+			closeConnection();
 		});
 	};
 	start();
 } catch (error) {
-	pgclient.end();
+	closeConnection();
 }
+
+const closeConnection = async () => {
+	await pgclient.end();
+};
 
 module.exports = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
 	dialect: "postgres",
